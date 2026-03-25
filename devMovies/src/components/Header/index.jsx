@@ -4,7 +4,7 @@ import Logo from '../../assets/logo.png'
 function Header () {
     return (
         <div>
-            <img src={ Logo } alt='logo-dev-movies'></img>
+            <img src={ Logo } alt='logo-dev-movies' style={ {width: 550} }></img>
         </div>
     )
 }
