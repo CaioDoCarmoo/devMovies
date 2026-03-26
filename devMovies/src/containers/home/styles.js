@@ -67,3 +67,11 @@ export const Poster = styled.div`
     }
 
 `
+
+export const ContainerButtons = styled.div`
+
+    display: flex;
+    gap: 20px;
+    margin-top: 30px;
+
+`

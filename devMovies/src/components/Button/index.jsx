@@ -1,9 +1,17 @@
+import { ButtonWhite, ButtonRed } from './styles'
 
 
+function Button({ children, red }) {
 
-function Button( {children} ) {
+    return (
 
-    return <button>Gafanhoto gafanhotinho</button>
+        <> 
+        { red ? ( <ButtonRed>{ children}</ButtonRed>) : <ButtonWhite>{children}</ButtonWhite>}
+        </>
+
+
+    )
+
 }
 
 export default Button
