@@ -1,6 +1,6 @@
 import { Container, Background } from './styles'
 import { useEffect, useState } from 'react'
-import api from '../../services/api'
+import { getMovie } from '../../services/getData' 
 
 function Modal({ movieId, setShowModal }) {
 
@@ -8,21 +8,14 @@ function Modal({ movieId, setShowModal }) {
 
     useEffect(() => {
 
-        async function getMovies() {
-            const { data: { results } } = await api.get(
-                `/movie/${movieId}/videos?language=en-US`
-            )
-
-            const trailer = results.find(
-                (video) => video.type === 'Trailer' && video.site === 'YouTube'
-            )
-
-            if (trailer) setMovie(trailer) 
+        async function loadTrailer() {
+            const trailer = await getMovie(movieId) 
+            if (trailer) setMovie(trailer)
         }
 
-        if (movieId) getMovies()
+        if (movieId) loadTrailer()
 
-    }, [movieId]) 
+    }, [movieId])
 
     return (
         <Background onClick={() => setShowModal(false)}>
@@ -33,7 +26,6 @@ function Modal({ movieId, setShowModal }) {
                         title='Youtube Video Player'
                         height="500px"
                         width="100%"
-
                     />
                 </Container>
             )}
