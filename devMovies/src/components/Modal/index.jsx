@@ -1,6 +1,6 @@
 import { Container, Background } from './styles'
 import { useEffect, useState } from 'react'
-import { getMovie } from '../../services/getData' 
+import { getMovieVideos } from '../../services/getData' 
 
 function Modal({ movieId, setShowModal }) {
 
@@ -9,7 +9,7 @@ function Modal({ movieId, setShowModal }) {
     useEffect(() => {
 
         async function loadTrailer() {
-            const trailer = await getMovie(movieId) 
+            const trailer = await getMovieVideos(movieId) 
             if (trailer) setMovie(trailer)
         }
 

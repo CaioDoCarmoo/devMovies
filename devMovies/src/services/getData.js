@@ -59,7 +59,7 @@ export async function getPersonPopular() {
 
 // Busca um filme pelo ID
 
-export async function getMovie(movieId) {
+export async function getMovieVideos(movieId) {
     const { data: { results } } = await api.get(
         `/movie/${movieId}/videos?language=en-US`
     )
@@ -69,4 +69,28 @@ export async function getMovie(movieId) {
     )
 
     return trailer || null
+}
+
+export async function getMovieCredits(movieId) {
+    const { data } = await api.get(
+        `/movie/${movieId}/credits`
+    )
+
+    return data
+}
+
+export async function getMovieSimilar(movieId) {
+    const { data: { results } } = await api.get(
+        `/movie/${movieId}/similar`
+    )
+
+    return results
+}
+
+export async function getMovieById(movieId) {
+    const { data }  = await api.get(
+        `/movie/${movieId}`
+    )
+
+    return data
 }
