@@ -19,19 +19,47 @@ function Home() {
 
     useEffect(() => {
 
+        // async function getAllData() {
+
+        //     console.time('time')
+
+        //     const result = await getMovies() 
+        //     if (result) setMovie(result)
+
+        //     setTopMovies(await getTopMovies())
+        //     setTopSeries(await getTopSeries())
+        //     setPopularSeries(await getPopularSeries())
+        //     setPersonPopular(await getPersonPopular())
+
+        //     console.timeEnd('time')
+
+        // }
+
+        // getAllData()
+
+
         async function getAllData() {
-            const result = await getMovies() 
+
+            // console.time('time')
+
+            const result = await getMovies()
             if (result) setMovie(result)
 
-            setTopMovies(await getTopMovies())
-            setTopSeries(await getTopSeries())
-            setPopularSeries(await getPopularSeries())
-            setPersonPopular(await getPersonPopular())
+            Promise.all([
+                getTopMovies(),
+                getTopSeries(),
+                getPopularSeries(),
+                getPersonPopular()
+
+            ])
+            .then( result => console.log(result))
+            .catch( error => console.error(error))
+
+            // console.timeEnd('time')
 
         }
 
         getAllData()
-
     }, [])
 
     return (
