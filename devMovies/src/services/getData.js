@@ -21,6 +21,18 @@ export async function getMovies() {
     return null 
 }
 
+
+// Pega todos os trailler
+export async function getMovieAllVideos(movieId) {
+    const { data: { results } } = await api.get(
+        `/movie/${movieId}/videos?language=en-US`
+    )
+
+    return results.filter(
+        (video) => video.type === 'Trailer' && video.site === 'YouTube'
+    )
+}
+
 export async function getTopMovies() {
 
     const { data: { results } } = await api.get('/movie/top_rated')
@@ -72,11 +84,11 @@ export async function getMovieVideos(movieId) {
 }
 
 export async function getMovieCredits(movieId) {
-    const { data } = await api.get(
+    const { data: { cast } } = await api.get(
         `/movie/${movieId}/credits`
     )
 
-    return data
+    return cast
 }
 
 export async function getMovieSimilar(movieId) {
